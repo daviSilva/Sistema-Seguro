@@ -219,20 +219,17 @@ for i in {1..10}; do curl -X POST -d "email=a@b.com&password=errado" http://loca
 
 ---
 
-## 🧑‍💻 Autor
+## Autor
 
 **Desenvolvido por:**  
-> DCS — Desenvolvedor Full Stack  
+> Davi Silva — Desenvolvedor Em Aprendizagem  
 > 💼 Foco em segurança, back-end e integração com banco de dados  
 > 🌐 [GitHub](https://github.com/seuusuario) • [LinkedIn](https://linkedin.com/in/seuusuario)
 
 ---
 
 ## 📜 Licença
-
-Este projeto é distribuído sob a licença **MIT**.  
-Você pode usar, modificar e distribuir livremente, desde que mantenha os créditos.
-
+ainda precisa arrumar uma.
 ---
 
 ## 🛡️ Conclusão
