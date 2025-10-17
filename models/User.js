@@ -1,23 +1,14 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../../src/db') || require('../db'); // tries both when moved
 
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email:    { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+const User = sequelize.define('User', {
+  name: { type: DataTypes.STRING, allowNull: true, defaultValue: '' },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true },
+  passwordHash: { type: DataTypes.STRING, allowNull: false },
+  isAdmin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
+}, {
+  tableName: 'users',
+  timestamps: true
 });
 
-// Criptografa a senha antes de salvar
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
-});
-
-// Verifica se a senha informada é igual ao hash
-userSchema.methods.comparePassword = function (senhaDigitada) {
-  return bcrypt.compare(senhaDigitada, this.password);
-};
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = User;
